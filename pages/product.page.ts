@@ -5,8 +5,6 @@ import { NewsletterModal } from './modals/newsletter.modal';
 
 export class ProductPage {
     readonly page: Page;
-    readonly closeAppPopupBtn: Locator;
-    readonly closeNewsletterPopupBtn: Locator;
     readonly firstActiveSize: Locator;
     readonly productName: Locator;
     readonly productPrice: Locator;
@@ -20,8 +18,6 @@ export class ProductPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.closeAppPopupBtn = page.getByRole('button', { name: 'Close' });
-        this.closeNewsletterPopupBtn = page.getByRole('img', { name: 'icon close popup' }).first();
         this.firstActiveSize = page.getByTestId('product-size-group').getByTestId('size').first();
         this.productName = page.getByTestId('product-name');
         this.productPrice = page.locator('[data-selen="product-price"]');
