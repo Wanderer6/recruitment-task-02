@@ -1,12 +1,12 @@
-export const UILabels = {
-    ADD_TO_CART_BTN: 'Dodaj do koszyka',
-    GO_TO_CHECKOUT_BTN: 'Przejdź do kasy',
-    JACKETS_SUBCATEGORY: 'Kurtki',
-    SHOW_CART_BTN: 'Zobacz koszyk',
+export const uiLabels = {
+    addToCartBtn: 'Dodaj do koszyka',
+    goToCheckoutBtn: 'Przejdź do kasy',
+    jacketsSubcategory: 'Kurtki',
+    showCartBtn: 'Zobacz koszyk',
 
 };
 
-export const AssertPrefixes = {
-    COLOR_PREFIX: 'Kolor:',
-    SIZE_PREFIX: 'Rozmiar:',
+export const assertPrefixes = {
+    colorPrefix: 'Kolor:',
+    sizePrefix: 'Rozmiar:',
 };
