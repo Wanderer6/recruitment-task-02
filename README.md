@@ -1,4 +1,4 @@
-# UI Tests for online clothing website
+# UI Tests for online clothing store
 
 ## Approach
 Approach for the tests is to use first product on the list to make sure tests won't break when some products are sold.
