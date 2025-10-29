@@ -8,10 +8,9 @@ import { assertPrefixes, uiLabels } from '../constants/test-data';
 test.describe('Cart tests', () => {
     let jacketsPage: JacketsPage;
 
-    test.beforeEach(async ({ page, baseURL }) => {
+    test.beforeEach(async ({ page }) => {
         const mainPage = new MainPage(page);
         jacketsPage = new JacketsPage(page);
-        console.log(`Playwright BASE_URL is set to: ${baseURL}`);
 
         await test.step('Open website', async () => {
             await page.goto('/pl/pl/');
