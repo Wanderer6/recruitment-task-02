@@ -1,4 +1,7 @@
 import { Locator, Page } from '@playwright/test';
+import { CartConfirmationModal } from './modals/cart-confirmation.modal';
+import { DownloadAppModal } from './modals/download-app.modal';
+import { NewsletterModal } from './modals/newsletter.modal';
 
 export class ProductPage {
     readonly page: Page;
@@ -11,6 +14,10 @@ export class ProductPage {
     readonly productSize: Locator;
     readonly addToCartBtn: Locator;
 
+    cartConfirmationModal: CartConfirmationModal;
+    downloadAppModal: DownloadAppModal;
+    newsletterModal: NewsletterModal;
+
     constructor(page: Page) {
         this.page = page;
         this.closeAppPopupBtn = page.getByRole('button', { name: 'Close' });
@@ -21,30 +28,9 @@ export class ProductPage {
         this.productColor = page.getByTestId('color-picker-title').locator('span');
         this.productSize = page.getByTestId('size-picker-size-name');
         this.addToCartBtn = page.getByTestId('add-to-cart-button');
-    }
-
-    async closeAppPopup() {
-        await this.closeAppPopupBtn.click();
-    }
-
-    async closeNewsletterPopup() {
-        await this.closeNewsletterPopupBtn.click();
-    }
-
-    async handlePopups() {
-        try {
-            await this.closeAppPopupBtn.waitFor( {timeout: 5000} );
-            console.log('Popup detected, attempting to close popups...');
-            await this.closeAppPopup();
-            await this.closeNewsletterPopup();
-            console.log('Popups closed successfully')
-        } catch (error) {
-            if (error.name === 'TimeoutError') {
-                console.log('No popup detected. Continuing test')
-            } else {
-                throw error;
-            }
-        }
+        this.cartConfirmationModal = new CartConfirmationModal(this.page);
+        this.downloadAppModal = new DownloadAppModal(this.page);
+        this.newsletterModal = new NewsletterModal(this.page);
     }
 
     async chooseFirstActiveSize() {
