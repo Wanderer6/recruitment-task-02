@@ -17,7 +17,7 @@ test.describe('Cart tests', () => {
         });
 
         await test.step('Accept cookies', async () => {
-            await mainPage.acceptCookies();
+            await mainPage.cookiesModal.acceptCookies();
         });
 
         await test.step(`Open ${uiLabels.jacketsSubcategory} shop category`, async () => {
