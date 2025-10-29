@@ -14,7 +14,7 @@ test.describe('Cart tests', () => {
         console.log(`Playwright BASE_URL is set to: ${baseURL}`);
 
         await test.step('Open website', async () => {
-            await page.goto('/');
+            await page.goto('/pl/pl/');
         });
 
         await test.step('Accept cookies', async () => {
