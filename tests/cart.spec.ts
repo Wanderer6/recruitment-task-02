@@ -5,7 +5,9 @@ import { ProductPage } from '../pages/product.page';
 import { CartPage } from '../pages/cart.page';
 import { assertPrefixes, uiLabels } from '../constants/test-data';
 
-test.describe('Cart tests', () => {
+test.describe('Cart tests', {
+    tag: '@cart',
+}, () => {
     let jacketsPage: JacketsPage;
 
     test.beforeEach(async ({ page }) => {
@@ -25,7 +27,9 @@ test.describe('Cart tests', () => {
         });
     });
 
-    test('Add product to cart', async ({ page }) => {
+    test('Add product to cart', {
+        tag: '@basicCart',
+    }, async ({ page }) => {
         const productPage = new ProductPage(page);
         const cartPage = new CartPage(page);
 
@@ -71,7 +75,9 @@ test.describe('Cart tests', () => {
         });
     });
 
-    test('Add product to cart using quick shop button', async ({ page }) => {
+    test('Add product to cart using quick shop button', {
+        tag: '@quickShop',
+    }, async ({ page }) => {
         const cartPage = new CartPage(page);
 
         let productPrice: string;
@@ -110,7 +116,9 @@ test.describe('Cart tests', () => {
         });
     });
 
-    test('Add product to mini cart', async ({ page }) => {
+    test('Add product to mini cart', {
+        tag: '@miniCart',
+    }, async ({ page }) => {
         let productPrice: string;
         let productName: string;
         let productSize: string;
