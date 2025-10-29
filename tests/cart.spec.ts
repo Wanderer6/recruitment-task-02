@@ -3,6 +3,7 @@ import { MainPage } from '../pages/main.page';
 import { JacketsPage } from '../pages/jackets.page';
 import { ProductPage } from '../pages/product.page';
 import { CartPage } from '../pages/cart.page';
+import { AssertPrefixes, UILabels } from '../constants/test-data';
 
 test.describe('Cart tests', () => {
     let jacketsPage: JacketsPage;
@@ -19,7 +20,7 @@ test.describe('Cart tests', () => {
             await mainPage.acceptCookies();
         });
 
-        await test.step('Open "Jackets" shop category', async () => {
+        await test.step(`Open ${UILabels.JACKETS_SUBCATEGORY} shop category`, async () => {
             await mainPage.navigationListComponent.openJacketsSubCategory();
         });
     });
@@ -53,18 +54,18 @@ test.describe('Cart tests', () => {
             productSize = await productPage.getProductSize();
         });
 
-        await test.step('Click "Dodaj do koszyka" button', async () => {
+        await test.step(`Click ${UILabels.ADD_TO_CART_BTN} button`, async () => {
             await productPage.addToCart();
         });
 
-        await test.step('Click "Przejdź do kasy" button', async () => {
+        await test.step(`Click ${UILabels.GO_TO_CHECKOUT_BTN} button`, async () => {
             await productPage.cartConfirmationModal.clickGoToCartBtn();
         });
 
         await test.step('Assert product details', async () => {
             await expect.soft(cartPage.productName).toHaveText(productName);
-            await expect.soft(cartPage.productColor).toHaveText(`Kolor: ${productColor}`);
-            await expect.soft(cartPage.productSize).toHaveText(`Rozmiar: ${productSize}`);
+            await expect.soft(cartPage.productColor).toHaveText(`${AssertPrefixes.COLOR_PREFIX} ${productColor}`);
+            await expect.soft(cartPage.productSize).toHaveText(`${AssertPrefixes.SIZE_PREFIX} ${productSize}`);
             await expect.soft(cartPage.productTotalPrice).toHaveText(productPrice);
             await expect.soft(cartPage.productFinalPrice).toHaveText(productPrice);
         });
@@ -96,14 +97,14 @@ test.describe('Cart tests', () => {
             await jacketsPage.quickShopModal.chooseFirstActiveSize();
         });
 
-        await test.step('Click "Zobacz koszyk" button', async () => {
+        await test.step(`Click ${UILabels.SHOW_CART_BTN} button`, async () => {
             await jacketsPage.quickShopModal.clickGoToCartBtn();
         });
 
         await test.step('Assert product details', async () => {
             await expect.soft(cartPage.productName).toHaveText(productName);
             await expect.soft(cartPage.productColor).toHaveText(productColor, { ignoreCase: true });
-            await expect.soft(cartPage.productSize).toHaveText(`Rozmiar: ${productSize}`);
+            await expect.soft(cartPage.productSize).toHaveText(`${AssertPrefixes.SIZE_PREFIX} ${productSize}`);
             await expect.soft(cartPage.productTotalPrice).toHaveText(productPrice);
             await expect.soft(cartPage.productFinalPrice).toHaveText(productPrice);
         });
@@ -142,7 +143,7 @@ test.describe('Cart tests', () => {
 
         await test.step('Assert product details', async () => {
             await expect.soft(jacketsPage.miniCartModal.productName).toHaveText(productName);
-            await expect.soft(jacketsPage.miniCartModal.productSize).toHaveText(`Rozmiar: ${productSize}`);
+            await expect.soft(jacketsPage.miniCartModal.productSize).toHaveText(`${AssertPrefixes.SIZE_PREFIX} ${productSize}`);
             await expect.soft(jacketsPage.miniCartModal.productFinalPrice).toHaveText(productPrice);
             await expect.soft(jacketsPage.miniCartModal.productTotalPrice).toHaveText(productPrice);
         });
